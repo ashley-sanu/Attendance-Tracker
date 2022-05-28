@@ -1,22 +1,22 @@
 # Attendance-Tracker
 Attendance Tracker is an Attendance Management System using Face recognition built with Django and Python.
-It is used to register the attendance of employees/users using face recognition and to view the attendance report and summary by employees and admins.
+It is used to register the attendance of users using face recognition and to view the attendance report and summary by employees and admins.
 
 ## Table of Contents
--[Technologies](#technologies)
--[Requirements](#requirements)
--[Installation](#installation)
--[Features](#features)
+- [Technologies](#technologies)
+- [Requirements](#requirements)
+- [Installation](#installation)
+- [Features](#features)
 
 ## Technologies
 This project is made using the following technologies:
--Python 3.10.4
--Django 4.0.4
--Mysql
+- Python 3.10.4
+- Django 4.0.4
+- Mysql
 
 ## Requirements
--Python 3.3+
--Django 3.2+
+- Python 3.3+
+- Django 3.2+
 
 ## Installation
 
