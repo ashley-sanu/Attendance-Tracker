@@ -2,23 +2,23 @@
 Attendance Tracker is an Attendance Management System using Face recognition built with Django and Python.
 It is used to register the attendance of employees/users using face recognition and to view the attendance report and summary by employees and admins.
 
-##Table of Contents
+## Table of Contents
 -[Technologies](#technologies)
 -[Requirements](#requirements)
 -[Installation](#installation)
 -[Features](#features)
 
-##Technologies
+## Technologies
 This project is made using the following technologies:
 -Python 3.10.4
 -Django 4.0.4
 -Mysql
 
-##Requirements
+## Requirements
 -Python 3.3+
 -Django 3.2+
 
-##Installation
+## Installation
 
 - Update pip
 `python -m pip install --upgrade pip`
@@ -36,12 +36,12 @@ This project is made using the following technologies:
 - Install opencv-python
 `pip install opencv-python`
 
-###Run the project
+### Run the project
 Go to the project directory
 `python manage.py runserver`
 Open http://127.0.0.1:8000/ with your browser to view
 
-##Features
+## Features
 - Employees can register their attendance using face recognition
 - Employees can view their attendance report by signing in using registraion number and password
 - Admins can sign in using their username and password and signout
@@ -49,7 +49,7 @@ Open http://127.0.0.1:8000/ with your browser to view
 - Admins can create a new employee account and send the account password to the employee's email address
 - Admins can add new admins
 
-##Detailed Description of the features
+## Detailed Description of the features
 - As the user clicks on the 'ENTRY/EXIT' button on the home page, the webcam opens and the image of the person standing infront of the camera is captured. The face encodings of the captured image is compared with the face encodings of the images of users stored in the database and the user image with least face distance is taken as the match. User is asked to confirm the detected face and user details. As the user confirms, the entry or exit of the user with the current time is recorded into the database.
 - The entry time and exit time is compared to the woking hours of the company(here, I have assumed 9 am - 5 pm as the working hours) and the difference is stored in database as fields 'entryLateorEarly' (is negative if the user enters earlier than 9 am and positive if late) and 'exitLateorEarly'(is negative if the user leaves earlier than 5pm and positive if late) in minutes.Net working time of the user is also calculated using entry and exit time.
 - Employees can go to 'View Your Attendance' and view the attendance report and summary after their entering registration number and password.
