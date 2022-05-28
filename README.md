@@ -39,6 +39,7 @@ This project is made using the following technologies:
 ### Run the project
 Go to the project directory
 `python manage.py runserver`
+
 Open http://127.0.0.1:8000/ with your browser to view
 
 ## Features
