@@ -85,5 +85,12 @@ To view attendance as an admin,
 2. go to Admin login and click 'View employee attendance'.
 3. Select any month and year or a whole year (select 2022 May or 2022 Whole year to get summary of entered values)
 
-###Features that can be added in the future 
-- 
+### Applications
+Attendance tracker can be used in companies where managers or higher level employees, who are considered as admins, monitor and manage attendance record of employees under their juridsiction. Employees while entering and leaving the workspace record their attendance. The employees and the manager or higher level employee can get the attendance report.
+
+
+### Features that can be added in the future 
+- A company has different categories and departments of employees with different entry and exit time policies. So expanding this project to incorporate different categories of employees and attendance analysis based on their different entry and exit time is to be added.
+- Different departments have different admins in a company.This project can be modified to integrate a hierarchical model of employees and managers where there are several managers or admins and the groups of employees under each admin's jurisdiction is different. The admin can get the attendance report of employees who are under his/her jurisdiction only.
+- Admins can also be employees of the company.
+- Leave sanctioning mechanism can be included in the web app, where according to the company policies,the employees can apply for leave and admins can grant the leave application through the web app.
