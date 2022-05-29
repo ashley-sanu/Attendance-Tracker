@@ -14,10 +14,13 @@ def totworkhrs(entryh,entrym,exith,exitm):
     tott=toth+((min)/float(60))
     return round(tott,2)
 def ifattendance(lateentry,earlyexit,totworkhrs):
+    #if the user enters late or exits early more than 2 hours or total working hours of the day is less than or equal to 4,the user is considered absent for the day
     if lateentry>=120 or earlyexit<=-120 or totworkhrs<=4:
         return 0
+    #if the user enters late or exits early more than 30 minutes or total working hours of the day is less than or equal to 7,the user is considered half day present
     elif lateentry>=30 or earlyexit<=-30 or totworkhrs<=7:
         return 0.5
+    #else the user is considered full day present
     else:
         return 1
 
