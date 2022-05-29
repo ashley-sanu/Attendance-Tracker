@@ -7,6 +7,9 @@ It is used to register the attendance of users using face recognition and to vie
 - [Requirements](#requirements)
 - [Installation](#installation)
 - [Features](#features)
+- [Detailed Description of the features](#detailed-description-of-the-features)
+- [Applications](#applications)
+- [Features that can be added in the future](#features-that-can-be-added-in-the-future)
 
 ## Technologies
 This project is made using the following technologies:
@@ -55,6 +58,8 @@ Open http://127.0.0.1:8000/ with your browser to view
 - On entering or leaving the workplace, the user clicks on the 'ENTRY/EXIT' button on the home page, the webcam opens and the image of the person standing infront of the camera is captured. The face encodings of the captured image is compared with the face encodings of the images of users stored in the database and the user image with least face distance is taken as the match. User is asked to confirm the detected face and user details. As the user confirms, the entry or exit of the user with time stamp is recorded into the database.
 - The entry time and exit time is compared to the woking hours of the company (here, I have assumed 9 am - 5 pm as the working hours) and the difference is stored in database as fields 'entryLateorEarly' (is negative if the user enters earlier than 9 am and positive if late) and 'exitLateorEarly'(is negative if the user leaves earlier than 5pm and positive if late) in minutes.Net daily working hours of the user is also calculated using entry and exit time.
 - A user is considered late if he/she enters or leaves 5 minutes past 9 am or 5 pm and early if 5 minutes earlier. 
+- A user is marked absent if the user enters late or exits early more than 2 hours or total working hours of the day is less than or equal to 4
+- A user is marked half day present if the user enters late or exits early more than 30 minutes or total working hours of the day is less than or equal to 7
 - Average late entry time, early exit time, early entry time, late exit time, working hours is calculated for a month.
 - Based on the number of days the user enters late in a month and exits early in a month and the average early exit and average late entry time of the month and the average working hours of the month, the admin is provided with the recommended action to take against the incumbent.
 - Employees can go to 'View Your Attendance' in the navbar and view the attendance report and summary after entering registration number and password.
