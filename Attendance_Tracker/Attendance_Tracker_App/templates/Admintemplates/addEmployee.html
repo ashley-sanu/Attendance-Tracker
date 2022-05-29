@@ -1,0 +1,49 @@
+{%extends "AttendanceTracker/layout.html"%}
+{%block body%}
+<style>
+    body{
+background-image: url('static/bg1.jpg');
+background-repeat: no-repeat;
+background-size: cover;
+background-attachment: fixed;
+}
+.class1{
+    color: white;
+    align-items: center;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    margin-left: 300px;
+    margin-right: 300px;
+}
+.cl3{
+    
+    text-align: center;
+}
+</style>
+<div class="class1">
+{% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert" style="color: red;font-size: large;">
+            {{ message }}
+            
+        </div>
+        {% endfor %}
+
+
+<div class="class2">
+    <div class="cl3"><h2><b>ADD EMPLOYEE</h2></b></div><br>
+    <form action="{% url 'addEmployee'%}" method="post" enctype="multipart/form-data">
+        {%csrf_token%}
+        Name: <input type="text" name="name" placeholder="Enter name of Employee" class="w3-input w3-border w3-light-grey" required><br>
+        Registration number: <input type="text" required placeholder="Enter registration number of Employee" name="regno" class="w3-input w3-border w3-light-grey"><br>
+        Email Address: <input type="email" required placeholder="Enter Email address of Employee" name="email" class="w3-input w3-border w3-light-grey"><br> 
+        Password: <input type="password" name="pass1" required placeholder="Enter Password" class="w3-input w3-border w3-light-grey"><br>
+        Confirm Password: <input type="password" name="pass2" required placeholder="Retype the password" class="w3-input w3-border w3-light-grey"><br>
+        Upload Image<br>Instructions:<br>
+        Picture must be a recent passport style color picture with face of the employee clearly visible.<br>Picture must eb of file format .jpg , .jpeg, .jfif, .pjpeg, .pjp, .png 
+        <br><input type="file" name="img1" class="w3-input w3-border w3-light-grey" required><br>
+        <div class="w3-center"><p><button type="submit" class="w3-button w3-white">SUBMIT</button></p>
+    </form>
+</div>
+
+</div>
+{%endblock%}

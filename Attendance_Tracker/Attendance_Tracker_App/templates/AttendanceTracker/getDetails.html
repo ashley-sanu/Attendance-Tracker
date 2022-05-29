@@ -1,0 +1,75 @@
+{%extends "AttendanceTracker/layout.html"%}
+{%block body%}
+<style>
+    body{
+background-image: url('static/bg1.jpg');
+background-repeat: no-repeat;
+background-size: cover;
+background-attachment: fixed;
+
+}
+.class1{
+    color: white;
+    align-items: center;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    margin-left: 300px;
+    margin-right: 300px;
+}
+.cl3{
+    
+    text-align: center;
+}
+select{
+    width:100%;
+    height: 40px;
+    border: none;
+  border-radius: 4px;
+}
+input{
+    border: none;
+  border-radius: 4px;
+}
+</style>
+<div class="class1">
+{% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert" style="color: red;font-size: large;">
+            {{ message }}
+            
+        </div>
+        {% endfor %}
+
+
+<div class="class2">
+    <div class="cl3"><h2><b>ENTER YOUR CREDENTIALS</h2></b></div><br>
+    <form action="{% url 'getAttendance'%}" method="post" enctype="multipart/form-data">
+        {%csrf_token%}
+        Registration number : <input type="text" name="regno" placeholder="Enter your Registration number" class="w3-input w3-border w3-light-grey" required><br>
+        Password: <input type="password" name="pass" required placeholder="Enter Password" class="w3-input w3-border w3-light-grey"><br>
+        Select Year :<br> <select id="year" name="year">
+            <option value="2021">2021</option>
+            <option selected value="2022">2022</option>
+            <option value="2023">2023</option>
+        </select>
+        <br><br>
+        Select Month : <br><select id="month" name='month'>
+                <option selected value='1'>January</option>
+                <option value='2'>February</option>
+                <option value='3'>March</option>
+                <option value='4'>April</option>
+                <option value='5'>May</option>
+                <option value='6'>June</option>
+                <option value='7'>July</option>
+                <option value='8'>August</option>
+                <option value='9'>September</option>
+                <option value='10'>October</option>
+                <option value='11'>November</option>
+                <option value='12'>December</option>
+                </select>    <br><br>
+                <input type="hidden" name="querytype" value="1">
+                <div class="w3-center"><p><button type="submit" class="w3-button w3-white"><i class="person_add"> </i>SUBMIT</button></div></p>
+    </form>
+</div>
+
+</div>
+{%endblock%}

@@ -1,0 +1,74 @@
+{%extends "AttendanceTracker/layout.html"%}
+{%block body%} 
+<!-- Page content -->
+<style>
+  
+  .class1{
+    color: white;
+    margin-top: 100px;
+    font-size: medium;
+}
+</style>
+<div class="w3-content" style="max-width:2000px;margin-top:46px">
+  
+  <header class="w3-display-container w3-content w3-wide" style="max-width:1500px;" id="home" name="home">
+    <img class="w3-image" src="static/bg.jpg" width="1500" height="800">
+    <div class="w3-display-left w3-text-white" style="padding:100px">
+
+      <div class="class1">
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert" style="font-size: large;">
+                <b>{{ message }}</b>
+                
+            </div></div>
+            {% endfor %}
+            <br><br><br>
+      <h1 class="w3-xxlarge w3-text-white"><span class="w3-padding w3-black w3-opacity-min"><b>ATTENDANCE</b></span> <span class="w3-hide-small w3-text-light-grey">TRACKER</span></h1>
+      <span class="w3-large">Kindly bring your face close to the camera <br>(15-30cm from the camera) before you try to record your entry or exit.</span>
+          <p><a href="{%url 'takeAttendance'%}" class="w3-button w3-white w3-padding-large w3-large w3-margin-top w3-opacity w3-hover-opacity-off">ENTRY/EXIT</a>
+          
+    </div>
+  </header>
+
+  <!-- How To Use Section -->
+  <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="howtouse" name="howtouse">
+    <h2 class="w3-wide">HOW TO USE THE ATTENDANCE TRACKER</h2>
+    <p class="w3-justify"><br>Users who are not registered should approach the admin to create a User Account using your Registration number and get your Account Password via Email.<br>
+    Use the 'ENTRY/EXIT' button on the <a href="#home">Home Page</a> to Register your attendance while entering the workplace. <br>Use the 'ENTRY/EXIT' button on the <a href="#home">Home Page</a> to register your attendance while leaving the workplace.<br>
+To view your attendance summary, Go to the 'VIEW YOUR ATTENDANCE' page.</p>
+     
+  </div>
+
+  <!-- CONTACT -->
+  <div class="w3-black" id="contact" name="contact">
+    <div style="margin-left:50px;margin-right:50px;">
+    <h2 class="w3-wide w3-center"><br><br>CONTACT US</h2>
+    <p class="w3-opacity w3-center"><i>Queries? Drop a note!</i></p>
+    <div class="w3-row w3-padding-32">
+      <div class="w3-col m6 w3-large w3-margin-bottom">
+        <i class="fa fa-envelope" style="width:30px"> </i> Email: attendancetrackerauth@gmail.com<br>
+      </div>
+      <div class="w3-col m6">
+        <form action="{% url 'contactMail'%}" method="post" enctype="multipart/form-data">
+          {%csrf_token%}
+          <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+            <div class="w3-half">
+              <input class="w3-input w3-border" type="text" placeholder="Subject" required name="subject">
+            </div>
+            <div class="w3-half">
+              <input class="w3-input w3-border" type="text" placeholder="Your Email Address" required name="Email">
+            </div>
+          </div>
+          <input class="w3-input w3-border" type="text" placeholder="Message" required name="Message">
+          <button class="w3-button w3-black w3-section w3-right" type="submit">SEND</button>
+        </form>
+      </div>
+    </div> 
+  </div>
+  </div>
+
+  
+<!-- End Page Content -->
+</div>
+
+{%endblock%}

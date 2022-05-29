@@ -1,0 +1,27 @@
+{%extends "AttendanceTracker/layout.html"%}
+{%block body%} 
+<style>
+    body{
+background-image: url('static/bg1.jpg');
+background-repeat: no-repeat;
+background-size: cover;
+background-attachment: fixed;
+padding: 30px;
+  }
+</style><br><br>
+<div class="w3-container w3-content w3-center w3-card w3-padding-64 w3-light-grey c1" style="width:300px;height: 500px; align-self: center;" >
+        <!-- <div class="w3-card"> -->
+    <img src="{{ obj.image.url}}" alt="connect" style="width:150px;"><br><br>
+       <p><b>Name: {{obj.name}}</b></p>
+         <p>Reg. no. : {{obj.regno}}</p> 
+            <p>Email : {{obj.email}}</p>
+   <form action="" method="POST" enctype="multipart/form-data">{%csrf_token%}
+        <input type="hidden" id="name" name="name" value="{{obj.name}}">
+        <input type="hidden" id="regno" name="regno" value="{{obj.regno}}">
+        <input type="hidden" id="email" name="email" value="{{obj.email}}">
+        <button class='w3-button w3-black' type="submit"><span></span>CONFIRM</button>
+</form>
+<!-- </div> -->
+</div></div>
+
+{%endblock%}

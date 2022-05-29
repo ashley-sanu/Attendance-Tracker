@@ -1,0 +1,44 @@
+{%extends "AttendanceTracker/layout.html"%}
+{%block body%} 
+<style>
+  body{
+background-image: url('static/bg2.jpg');
+background-repeat: no-repeat;
+background-size: cover;
+background-attachment: fixed;
+  }
+  .class1{
+    color: white;
+    align-items: center;
+    margin-top: 100px;
+    text-align: center;
+}
+  </style>
+
+
+<div class="w3-content" style="max-width:1500px">
+  <div class="class1">
+{% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert" style="color: red;font-size: large;">
+        <b>{{ message }}</b>
+        
+    </div></div>
+    {% endfor %}
+    
+
+    <div class="w3-center w3-text-white" style="padding:100px 16px">
+     <h1>Hello {{name}}!  </h1><br>     
+      
+        <div class="w3-bar w3-border">
+          <a href="{% url 'adminAttendanceView'%}" class="w3-bar-item w3-button">VIEW EMPLOYEE ATTENDANCE</a>
+          <a href="{% url 'addEmployee' %}" class="w3-bar-item w3-button ">ADD EMPLOYEE</a>
+          <a href="{% url 'addAdmin'%}" class="w3-bar-item w3-button">ADD NEW ADMIN</a>
+        </div>
+       
+      </div>
+          <div class="w3-center"><p><a href="{% url 'adminSignout' %}" class="w3-button w3-black"><i class="fa fa-sign-out"> </i>SIGN OUT</a></p>
+          </div>
+     
+
+</div>
+{%endblock%}

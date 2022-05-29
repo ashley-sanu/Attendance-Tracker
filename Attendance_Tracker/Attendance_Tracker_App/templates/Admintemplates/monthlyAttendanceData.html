@@ -1,0 +1,221 @@
+{%extends "AttendanceTracker/layout.html"%}
+{%block body%}
+{%load get_month from customtags%}
+<style>
+    body{
+        
+background-image: url('static/bg1.jpg'); 
+background-repeat: no-repeat;
+background-size: cover;
+background-attachment: fixed;
+align-items: center;
+overflow-x: scroll;
+
+}
+html,body{
+  height:100vh;
+  width:100vw;
+  margin: 0;
+  padding: 0;
+}
+.class1{
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+    align-items: center;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    margin-left: 90px;
+    margin-right: 90px;
+    
+}
+.cl3{
+    
+    text-align: left;
+}
+select{
+    width:100%;
+    height: 40px;
+    border: none;
+  border-radius: 4px;
+}
+input{
+    border: none;
+  border-radius: 4px;
+}
+.tb1,.tb1 td, .tb1 th{
+    color: black;
+    border: 1px solid black;
+    padding: 10px;
+    border-collapse: collapse;
+}
+.tb1 td, .tb1 th{
+    min-width: 100px;
+    text-align: center;
+}
+.tb1 tr:nth-child(even) {
+  background-color: white;
+}
+.tb1 tr:nth-child(odd) {
+  background-color: lightgray;
+}
+.tb2,.tb2 td, .tb2 th,.tb2 tr{
+    border: 1px solid lightgray;
+    border-collapse: collapse;
+    
+}
+.tb2 td, .tb2 th{
+    width: 300px;
+    text-align: center;
+    
+}
+.tb3, .tb3 th,.tb3 td{
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 5px;
+    margin-left:auto; 
+    margin-right:auto;
+}
+
+
+</style>
+<div class="class1">
+    <div class="cl3">
+        <h4><b>Year: {{year}}</h4></b>
+        <h4><b>Month : {%get_month month%} </h4></b>
+        
+        <h2 style="text-align: center;"><b> ATTENDANCE SUMMARY OF THE MONTH</h2></b><br>
+    </div>
+
+    <table class="tb1">
+        <tr>
+            <th>REG. NO.</th>
+            <th>NAME</th>
+            <th>FULL DAY PRESENT<br>(no. of days)</th>
+            <th>HALF DAY PRESENT<br>(no. of days) </th>
+            <th>ABSENT<br>(no. of days)</th>
+            <th>Average Early Entry time per day<br>(in minutes)</th>
+            <th>Average Late Entry time per day<br>(in minutes)</th>
+            <th>Average Early Exit time per day<br>(in minutes)</th>
+            <th>Average Overtime per day<br>(in minutes)</th>
+            
+            <th>Average Working hours per day<br>(in hours)</th>
+            <th>Action Recommended</th>
+            <th></th>
+        </tr>
+        {%for listitem in list%}
+        <tr>
+            {%for li in listitem%}
+            <td>{{li}}</td>
+            {%endfor%}
+            <td><form action="{% url 'getAttendance'%}" method="post" enctype="multipart/form-data">
+                {%csrf_token%} <input type="hidden" name="querytype" value="2"><input type="hidden" name="year" value="{{year}}">
+                <input type="hidden" name="month" value="{{month}}"><input type="hidden" name="list" value={{listitem}}><button type="submit" class="w3-button w3-black">VIEW DETAILS</button></form></td>
+        </tr>
+        {%endfor%}
+    </table><br>
+    <br>
+    <div class="w3-row-padding w3-padding-32" style="margin:0 -16px">
+        <div class="w3-quarter w3-margin-bottom">
+            <div class="w3-container w3-white w3-center">
+                <br><p><b>Employees who<h1>Entered Late</h1>for more than 10 days</b></p>
+                <p style="font-size: 30px;">{{no_of_emp_entrylate_morethan10days}}</p>
+                <p><button id="btn1" onclick="showlist('btn1','tab1')">Show List</button></p>
+                <p><table style="visibility:hidden;align-self: center;" id="tab1" class="tb3">
+                    <tr>
+                        <th>Reg. no.</th>
+                        <th>Name</th>
+                    </tr>
+                    {% for sublist in emp_entrylate_morethan10days%}
+                    <tr>
+                        {% for listitem in sublist%}
+                        <td>{{listitem}}</td>
+                        {%endfor%}
+                    </tr>
+                    {%endfor%}
+                </table></p>
+                </div></div>
+
+                <div class="w3-quarter w3-margin-bottom">
+                    <div class="w3-container w3-white w3-center">
+                        <br><p><b>Employees who<h1>Entered Early</h1> for more than 10 days</b></p>
+                        <p style="font-size: 30px;">{{no_of_emp_entryearly_morethan10days}}</p>
+                        <p><button id="btn2" onclick="showlist('btn2','tab2')">Show List</button></p>
+                        <p><table style="visibility:hidden;" id="tab2" class="tb3">
+                            <tr>
+                                <th>Reg. no.</th>
+                                <th>Name</th>
+                            </tr>
+                            {% for sublist in emp_entryearly_morethan10days%}
+                            <tr>
+                                {% for listitem in sublist%}
+                                <td>{{listitem}}</td>
+                                {%endfor%}
+                            </tr>
+                            {%endfor%}
+                        </table></p>
+                        </div></div>
+                
+                    <div class="w3-quarter w3-margin-bottom">
+                        <div class="w3-container w3-white w3-center">
+                           <br> <p><b>Employees who<h1>Exited Early</h1> for more than 10 days</b></p>
+                            <p style="font-size: 30px;">{{no_of_emp_exitearly_morethan10days}}</p>
+                            <p><button id="btn3" onclick="showlist('btn3','tab3')">Show List</button></p>
+                            <p><table style="visibility:hidden;" id="tab3" class="tb3">
+                                <tr>
+                                    <th>Reg. no.</th>
+                                    <th>Name</th>
+                                </tr>
+                                {% for sublist in emp_exitearly_morethan10days%}
+                                <tr>
+                                    {% for listitem in sublist%}
+                                    <td>{{listitem}}</td>
+                                    {%endfor%}
+                                </tr>
+                                {%endfor%}
+                            </table></p>
+                            </div></div>
+
+                    <div class="w3-quarter w3-margin-bottom">
+                        <div class="w3-container w3-white w3-center">
+                           <br> <p><b>Employees who<h1>Exited Late</h1> for more than 10 days</b></p>
+                            <p style="font-size: 30px;">{{no_of_emp_exitlate_morethan10days}}</p>
+                            <p><button id="btn4" onclick="showlist('btn4','tab4')">Show List</button></p>
+                            <p><table style="visibility:hidden;" id="tab4" class="tb3">
+                                <tr>
+                                    <th>Reg. no.</th>
+                                    <th>Name</th>
+                                </tr>
+                                {% for sublist in emp_exitlate_morethan10days%}
+                                <tr>
+                                    {% for listitem in sublist%}
+                                    <td>{{listitem}}</td>
+                                    {%endfor%}
+                                </tr>
+                                {%endfor%}
+                            </table></p>
+                            </div></div>
+        
+</div>
+
+    <script>
+function showlist(btn,tab){
+    if(document.getElementById(tab).style.visibility=="hidden")
+    {
+        document.getElementById(tab).style.visibility="visible";
+        document.getElementById(btn).innerText="Hide List";
+    }
+    else if(document.getElementById(tab).style.visibility=="visible")
+    {
+        document.getElementById(tab).style.visibility="hidden";
+        document.getElementById(btn).innerText="Show List";
+    }
+    
+}
+    </script>
+
+
+
+</div>
+{%endblock%}
