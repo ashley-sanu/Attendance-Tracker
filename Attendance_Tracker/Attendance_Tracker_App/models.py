@@ -70,5 +70,5 @@ class AttendanceRegister(models.Model):
         super(AttendanceRegister, self).save(*args, **kwargs)
     
     def __str__(self):
-        return f"{self.regno} : {self.name} {self.day}"
+        return f"{self.regno} : {self.name}"
 
